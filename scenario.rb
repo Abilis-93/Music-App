@@ -4,13 +4,13 @@ load 'compact_disk.rb'
 load 'music_system.rb'
 load 'user.rb'
 
-tracks1 = { 1 => ["AC/DC", "Highway to Hell"], 2 => ["Metallica", "yo!!"], 3 => ["Руки вверх", "18"] }
-tracks2 = { 1 => ["Denis kenzo", "Leave"], 2 => ["Kazukii l", "fall"], 3 => ["JGA", "until"] }
-tracks3 = { 1 => ["Platon && Joolay", "Over"], 2 => ["Spaceouter", "Life choice!!"], 3 => ["Laniakea", "forbearance"] }
+tracks1 = { 1 => ['AC/DC', 'Highway to Hell'], 2 => ['Metallica', 'yo!!'], 3 => ['Руки вверх', '18'] }
+tracks2 = { 1 => ['Denis kenzo', 'Leave'], 2 => ['Kazukii l', 'fall'], 3 => ['JGA', 'until'] }
+tracks3 = { 1 => ['Platon && Joolay', 'Over'], 2 => ['Spaceouter', 'Life choice!!'], 3 => ['Laniakea', 'forbearance'] }
 
-cd1 = CompactDisk.new("The end", tracks1)
-cd2 = CompactDisk.new("Loose", tracks2)
-cd3 = CompactDisk.new("Choose", tracks3)
+cd1 = CompactDisk.new('The end', tracks1)
+cd2 = CompactDisk.new('Loose', tracks2)
+cd3 = CompactDisk.new('Choose', tracks3)
 disk_collection = CollectionDisk.new
 disk_collection.insert(cd1)
 disk_collection.insert(cd2)
@@ -20,22 +20,23 @@ music = MusicSystem.new
 
 user = User.new(music, disk_collection)
 
-puts "Здравствуйте! В вамшем распоряжении есть Музыкальный центр \"Sony X-357\" и Коллекция из 7 компакт дисков!"
+puts 'Здравствуйте! В вамшем распоряжении есть Музыкальный центр "Sony X-357" и Коллекция из 7 компакт дисков!'
 
 loop do
-  puts "Выберите объект взаимодействия: 1. Музыкальный центр. 2. Коллекция дисков. 3. Выйти"
+  puts 'Выберите объект взаимодействия: 1. Музыкальный центр. 2. Коллекция дисков. 3. Выйти'
   input = gets.chomp.to_i
-  if input == 1
+  case input
+  when 1
     if music.is_inserted
-      puts "Выберите действие: "
-      puts "1. Вернуться в предыдущему меню."
-      puts "2. Запустить проигрывание диска."
-      puts "3. Остановить проигрывание диска"
-      puts "4. Поставить на паузу/возобновить"
-      puts "5. Переключить на след трек"
-      puts "6. Переключить на предыдущий трек."
-      puts "7. Статус МузЦентра."
-      puts "8. Вытащить диск."
+      puts 'Выберите действие: '
+      puts '1. Вернуться в предыдущему меню.'
+      puts '2. Запустить проигрывание диска.'
+      puts '3. Остановить проигрывание диска'
+      puts '4. Поставить на паузу/возобновить'
+      puts '5. Переключить на след трек'
+      puts '6. Переключить на предыдущий трек.'
+      puts '7. Статус МузЦентра.'
+      puts '8. Вытащить диск.'
 
       case gets.chomp.to_i
       when 1
@@ -55,13 +56,13 @@ loop do
       when 8
         user.pull_to_ms
       else
-        puts "неверный выбор. попробуйте снова"
+        puts 'неверный выбор. попробуйте снова'
       end
 
     else
-      puts "1. Вставить диск.(Отображать если у пользователя в руках диск)." unless user.current_disk.nil?
-      puts "нет диска в руках" if user.current_disk.nil?
-      puts "2. Вернуться к предыдущему меню"
+      puts '1. Вставить диск.(Отображать если у пользователя в руках диск).' unless user.current_disk.nil?
+      puts 'нет диска в руках' if user.current_disk.nil?
+      puts '2. Вернуться к предыдущему меню'
 
       case gets.chomp.to_i
       when 1
@@ -69,14 +70,14 @@ loop do
       when 2
         next
       else
-        puts "неверный выбор. попробуйте снова"
+        puts 'неверный выбор. попробуйте снова'
       end
     end
-  elsif input == 2
+  when 2
     puts "Вот ваша коллекция компакт дисков: 1. #{disk_collection.collect_disk}"
-    puts "Выберите действие: "
-    puts "1. Взять компакт диск."
-    puts "2. Положить компакт диск в коллекцию.(Отображать если у пользователя в руках диск)" unless user.current_disk.nil?
+    puts 'Выберите действие: '
+    puts '1. Взять компакт диск.'
+    puts '2. Положить компакт диск в коллекцию.(Отображать если у пользователя в руках диск)' unless user.current_disk.nil?
     loop do
       case gets.chomp.to_i
       when 1
@@ -96,19 +97,19 @@ loop do
           puts "#{cd3.title} руках"
           break
         else
-          puts "неверный выбор. попробуйте снова"
+          puts 'неверный выбор. попробуйте снова'
         end
       when 2
         puts "#{user.current_disk.title} размещен в коллекцию дисков"
         user.insert_to_cd(user.current_disk)
         break
       else
-        puts "неверный выбор. попробуйте снова"
+        puts 'неверный выбор. попробуйте снова'
       end
     end
-  elsif input == 3
+  when 3
     break
   else
-    puts "неверный выбор. попробуйте снова"
+    puts 'неверный выбор. попробуйте снова'
   end
 end

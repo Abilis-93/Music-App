@@ -1,4 +1,4 @@
-require "active_support"
+require 'active_support'
 
 class MusicSystem
   MODEL = "Sony X-35"
@@ -41,12 +41,12 @@ class MusicSystem
   end
 
   def next_track
-    return puts "на диске больше нет треков" if @disk.nil?
+    return puts "на диске больше нет треков" if @disk.last_element
     puts "переключение на след-й трек #{@disk.next_element}" if @status == @track_status[1]
   end
 
   def prev_track
-    return puts "Вы вернулись на самое начало списка треков" if @track_number == 0
+    return puts "Вы вернулись на самое начало списка треков" if @disk.first_element
     puts "переключение на пред-щий трек #{@disk.next_element}" if @status == @track_status[1]
   end
 

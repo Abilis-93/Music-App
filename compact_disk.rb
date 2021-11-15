@@ -11,12 +11,22 @@ class CompactDisk
   end
 
   def next_element
-    return "конец списка" if next_element?
+    return "конец списка" if last_element
     @index_current_element += 1
     @track_list[@index_current_element]
   end
 
-  def next_element?
+  def prev_element
+    return "начало списка" if first_element
+    @index_current_element -= 1
+    @track_list[@index_current_element]
+  end
+
+  def last_element
     @track_list[@index_current_element].nil?
+  end
+
+  def first_element
+    @index_current_element == 0
   end
 end
