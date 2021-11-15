@@ -51,7 +51,7 @@ loop do
       when 6
         user.prev_track
       when 7
-        user.status
+        user.click_status
       when 8
         user.pull_to_ms
       else

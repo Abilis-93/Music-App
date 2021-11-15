@@ -41,13 +41,13 @@ class MusicSystem
   end
 
   def next_track
-    return puts "на диске больше нет треков" if @disk.nil?
-    puts "переключение на след-й трек #{@disk.next_element}" if @status == @track_status[1]
+    return puts "конец списка" if @disk.track_list.nil?
+    puts "переключение на след-й трек #{@disk.track_list[@track_number += 1]}" if @status == @track_status[1]
   end
 
   def prev_track
     return puts "Вы вернулись на самое начало списка треков" if @track_number == 0
-    puts "переключение на пред-щий трек #{@disk.next_element}" if @status == @track_status[1]
+    puts "переключение на пред-щий трек #{@disk.track_list[@track_number -= 1]}" if @status == @track_status[1]
   end
 
   def play

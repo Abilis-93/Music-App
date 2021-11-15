@@ -1,3 +1,5 @@
+load 'modules.rb'
+
 class User
   attr_accessor :current_disk
 
@@ -8,11 +10,11 @@ class User
   end
 
   def show_track_name
-
+    @current_disk.title
   end
 
   def show_track_list
-
+    @current_disk.track_list
   end
 
   def take_disk(disk)
