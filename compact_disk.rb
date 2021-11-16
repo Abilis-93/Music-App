@@ -7,6 +7,5 @@ class CompactDisk
     @uuid = SecureRandom.uuid
     @title = title
     @track_list = track_list
-    @index_current_element = 1
   end
 end

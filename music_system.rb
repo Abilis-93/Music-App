@@ -41,12 +41,12 @@ class MusicSystem
   end
 
   def next_track
-    return puts "конец списка" if @disk.track_list.nil?
+    return puts "конец списка" if @track_number == @disk.track_list.length
     puts "переключение на след-й трек #{@disk.track_list[@track_number += 1]}" if @status == @track_status[1]
   end
 
   def prev_track
-    return puts "Вы вернулись на самое начало списка треков" if @track_number == 0
+    return puts "Вы вернулись на самое начало списка треков" if @track_number < 1
     puts "переключение на пред-щий трек #{@disk.track_list[@track_number -= 1]}" if @status == @track_status[1]
   end
 
@@ -57,7 +57,8 @@ class MusicSystem
     else
       @status = @track_status[1]
       @current_track = @disk.track_list.first
-      puts "начинает играть трек #{@current_track}"
+      puts "ЗДЕСЬ БЫЛ ВАСЯ #{@current_track[1].class}"
+      puts "начинает играть трек #{@current_track[0][1]} - #{@current_track[1][1]}" # TODO Доделать обязательно!!!
     end
 
   end
